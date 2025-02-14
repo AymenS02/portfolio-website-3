@@ -1,6 +1,15 @@
+"use client"
+
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { useState } from "react";
+
 import Image from 'next/image'
 
 export default function Home() {
+
+  const [selectedTab, setSelectedTab] = useState(allIngredients[0]);
+
   return (
     <div className="bg-gray-900 min-h-screen md:p-[10vw] text-gray-300 font-mono">
       <div className="flex">
@@ -58,34 +67,71 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="mt-10">
-        <h2 className="text-3xl">Experience</h2>
-        <div className="mt-4">
-          <div className='bg-gray-800 p-4 rounded-lg shadow-md w-[300px]'>
 
-            <div className='flex gap-2'>
-              <Image src="/photoface.png" alt="Microsoft" className="h-10 w-auto object-contain rounded-lg" width={100} height={100} />
-              <div className='mt-2 flex-col items-center gap-2'>
-                <h3>The Win Column</h3>
-                <p>Software Engineer</p>
-              </div>
-            </div>
 
-            <p className='mt-2'>May 2024 - Aug 2024</p>
-
-            <p className='mt-2'>Devloped a blah blah blah</p>
-
-            <div className='mt-2 flex gap-2'>
-
-              <p>React</p>
-              <p>Next.js</p>
-              <p>MongoDB</p>
-
-            </div>
-          </div>
-
+      <div className="w-[80VW] h-[60vh] rounded-lg bg-white overflow-hidden shadow-lg flex flex-col">
+            <nav className="bg-gray-100 p-1 border-b border-gray-200 rounded-t-lg">
+                <ul className="flex w-full list-none p-0 m-0 font-medium text-sm">
+                    {allIngredients.map((item) => (
+                        <motion.li
+                            key={item.label}
+                            initial={false}
+                            animate={{
+                                backgroundColor:
+                                    item === selectedTab ? "#eee" : "#eee0",
+                            }}
+                            className="flex-1 min-w-0 flex items-center justify-between px-4 py-2 cursor-pointer text-gray-900 relative"
+                            onClick={() => setSelectedTab(item)}
+                        >
+                            {`${item.icon} ${item.label}`}
+                            {item === selectedTab ? (
+                                <motion.div
+                                    className="absolute bottom-[-2px] left-0 right-0 h-[2px] bg-blue-500"
+                                    layoutId="underline"
+                                    id="underline"
+                                />
+                            ) : null}
+                        </motion.li>
+                    ))}
+                </ul>
+            </nav>
+            <main className="flex flex-1 justify-center items-center">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={selectedTab ? selectedTab.label : "empty"}
+                        initial={{ y: 10, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -10, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="text-[128px]"
+                    >
+                        {selectedTab ? selectedTab.icon : "😋"}
+                    </motion.div>
+                </AnimatePresence>
+            </main>
         </div>
-      </div>
+
+        <div className="mt-20 w-[80VW] h-[60vh] rounded-lg bg-black overflow-hidden shadow-lg flex flex-col">
+            <motion.div 
+              animate={{ x: "400%", y: "400%" }}
+              transition={{ duration: 2.5, ease: "easeInOut" }}
+              className="w-[20%] h-[20%] flex bg-slate-500">
+                <h1 className="text-3xl p-4 w-full h-full flex items-center justify-center">BOX</h1>
+            </motion.div>
+        </div>
+
+
+        
     </div>
   );
 }
+/**
+ * ==============   Data   ================
+ */
+const allIngredients = [
+  { icon: "💼", label: "Experience" },
+  { icon: "🚧", label: "Projects" },
+  { icon: "⚙️", label: "Skills" },
+];
+
+
