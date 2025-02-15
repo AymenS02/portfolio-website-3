@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 import Image from 'next/image'
+import {Button} from "@heroui/button";
 
 export default function Home() {
 
-  const [selectedTab, setSelectedTab] = useState(allIngredients[0]);
+  const [selectedTab, setSelectedTab] = useState(allIngredients[2]);
 
   return (
     <div className="bg-gray-900 min-h-screen md:p-[10vw] text-gray-300 font-mono"  style={{ scrollBehavior: 'smooth' }}>
@@ -33,7 +34,7 @@ export default function Home() {
             {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/aymen-shoteri/"
-              className="flex items-center gap-2 bg-gray-700 border border-black text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-400 transition"
+              className="flex items-center gap-2 bg-gray-700 border border-gray-200 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-400 transition"
             >
               <Image src="/linkedin.webp" alt="LinkedIn" className="h-6 w-auto object-contain" width={50} height={50} />
             </a>
@@ -41,7 +42,7 @@ export default function Home() {
             {/* GitHub */}
             <a
               href="https://github.com/AymenS02"
-              className="flex items-center gap-2 bg-gray-700 border border-black text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-400 transition"
+              className="flex items-center gap-2 bg-gray-700 border border-gray-200 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-400 transition"
             >
               <Image src="/github.png" alt="GitHub" className="h-6 w-auto object-contain" width={50} height={50} />
             </a>
@@ -49,7 +50,7 @@ export default function Home() {
             {/* Email Button */}
             <a
               href="mailto:shoteriaymen@gmail.com"
-              className="flex items-center gap-2 bg-gray-700 border border-black text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-400 transition"
+              className="flex items-center gap-2 bg-gray-700 border border-gray-200 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-400 transition"
             >
               <Image src="/email.png" alt="Email" className="h-6 w-auto object-contain" width={24} height={24} />
               <span className='text-gray-500'>shoteriaymen@gmail.com</span>
@@ -69,7 +70,7 @@ export default function Home() {
 
 
 
-      <div className="mt-10 w-[80VW] h-[60vh] rounded-lg bg-gray-700 overflow-hidden shadow-lg flex flex-col">
+      <div className="mt-10 w-[80vw] h-[60vh] rounded-lg bg-gray-800 overflow-hidden shadow-lg flex flex-col">
             <nav className="bg-gray-800 border-b border-gray-200 rounded-t-lg">
                 <ul className="flex w-full list-none p-0 m-0 font-medium text-sm">
                     {allIngredients.map((item) => (
@@ -95,7 +96,7 @@ export default function Home() {
                     ))}
                 </ul>
             </nav>
-            <main className="flex flex-1 justify-center items-center ">
+            <main className="flex flex-1">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={selectedTab ? selectedTab.label : "empty"}
@@ -105,7 +106,9 @@ export default function Home() {
                         transition={{ duration: 0.2 }}
                         className="text-[128px]"
                     >
-                        {selectedTab ? selectedTab.icon : "😋"}
+                      <div className="w-[80vw] h-[60vh]">
+                        {selectedTab.details}
+                      </div>
                     </motion.div>
                 </AnimatePresence>
             </main>
@@ -129,9 +132,105 @@ export default function Home() {
  * ==============   Data   ================
  */
 const allIngredients = [
-  { icon: "💼", label: "Experience" },
-  { icon: "🚧", label: "Projects" },
-  { icon: "⚙️", label: "Skills" },
+  { 
+    icon: "💼", 
+    label: "Experience", 
+    details: <div className="flex justify-evenly gap-4 flex-wrap" >
+
+      {/* <div className="bg-slate-950 w-[25vw] p-4 m-4 rounded-lg flex flex-col" >
+        <h1 className="text-xl font-bold text-white">Full Stack Developer</h1>
+        <div className="flex gap-2">
+          <p className="text-lg">at</p>
+          <p className="text-white font-bold text-lg">The Win Column</p>
+        </div>
+        <hr className="mt-2"/>
+        <div className=" mt-1 rounded-lg flex flex-col gap-2 ">
+          <p className="text-lg text-white">May 2024 - Aug 2024</p>
+          <p className="text-sm text-white">Developed a dynamic educational platform with JavaScript, SCSS, and MongoDB, integrating secure payments, authentication, and a responsive UI for 100+ users.</p>
+
+          <div className="flex gap-2">
+            <Image src="/skills/react.webp" alt="React" width={48} height={48} className="object-contain" />
+            <Image src="/skills/mongodb.webp" alt="MongoDB" width={48} height={48} className="object-contain" />
+            <Image src="/skills/sass.webp" alt="Sass" width={48} height={48} className="object-contain" />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-slate-950 w-[25vw] p-4 m-4 rounded-lg flex flex-col" >
+        <h1 className="text-xl font-bold text-white">Front-End Develope</h1>
+        <div className="flex gap-2">
+          <p className="text-lg">at</p>
+          <p className="text-white font-bold text-lg">Road 2 Righteousness</p>
+        </div>
+        <hr className="mt-2"/>
+        <div className=" mt-1 rounded-lg flex flex-col gap-2 ">
+          <p className="text-lg text-white">Oct 2024 - Jan 2025</p>
+          <p className="text-sm text-white">Developed a modern, responsive website for a self-development retreat company using React, Tailwind CSS, and GSAP, integrating secure user registrations, a seamless booking system, and optimized performance for over 200 visitors.</p>
+
+          <div className="flex gap-2">
+            <Image src="/skills/react.webp" alt="React" width={48} height={48} className="object-contain" />
+            <Image src="/skills/gsap.webp" alt="MongoDB" width={48} height={48} className="object-contain" />
+            <Image src="/skills/tailwind.png" alt="Sass" width={48} height={48} className="object-contain" />
+          </div>
+        </div>
+      </div> */}
+
+      <div className="bg-slate-950 w-[25vw] p-4 m-4 rounded-lg flex flex-col" >
+        <h1 className="text-xl font-bold text-white">Software Engineer</h1>
+        <div className="flex gap-2">
+          <p className="text-lg">at</p>
+          <p className="text-white font-bold text-lg">McMaster MSA</p>
+        </div>
+        <hr className="mt-2"/>
+        <div className=" mt-1 rounded-lg flex flex-col gap-2 ">
+          <p className="text-lg text-white">May 2024 - Aug 2024</p>
+          <p className="text-sm text-white">Developed a modern, responsive website for a self-development retreat company using React, Tailwind CSS, and GSAP, integrating secure user registrations, a seamless booking system, and optimized performance for over 200 visitors.</p>
+
+          <div className="flex gap-2">
+            <Image src="/skills/typescript.svg" alt="React" width={48} height={48} className="object-contain" />
+            <Image src="/skills/node.webp" alt="MongoDB" width={48} height={48} className="object-contain" />
+            <Image src="/skills/firebase.webp" alt="Sass" width={48} height={48} className="object-contain" />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-slate-950 w-[25vw] p-4 m-4 rounded-lg flex flex-col" >
+        <h1 className="text-xl font-bold text-white">Full Stack Developer</h1>
+        <div className="flex gap-2">
+          <p className="text-lg">at</p>
+          <p className="text-white font-bold text-lg">Freelancing</p>
+        </div>
+        <hr className="mt-2"/>
+        <div className=" mt-1 rounded-lg flex flex-col gap-2 ">
+          <p className="text-lg text-white">May 2024 - Aug 2024</p>
+          <p className="text-sm text-white">Developed custom, responsive websites using React, Next.js, and Tailwind CSS, integrating secure payment gateways, subscription models, interactive animations with Framer Motion, and MongoDB for managing data for over 50 clients.</p>
+          <div className="flex gap-2">
+            <Button className="py-1 px-5 text-sm text-black bg-gradient-to-tr from-slate-500 to-slate-300 border b-2 border-gray-200 rounded-sm">Projects</Button>
+            <Button  className="py-1 px-5 text-sm text-black bg-gradient-to-tr from-slate-500 to-slate-300 border border-gray-200 rounded-sm">Skills</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  },
+  { 
+    icon: "🚧", 
+    label: "Projects", 
+    details: <div className="w-20 h-screen">
+      <div className="text-sm" >Experience 1: Software Engineer at XYZ</div>
+      <div className="text-sm" >Experience 2: Frontend Developer at ABC</div>
+      <div className="text-sm" >Experience 3: Intern at DEF</div>
+    </div>
+  },
+  { 
+    icon: "⚙️", 
+    label: "Skills", 
+    details: <div className="w-20 h-screen">
+      <div className="text-sm" >Experience 1: Software Engineer at XYZ</div>
+      <div className="text-sm" >Experience 2: Frontend Developer at ABC</div>
+      <div className="text-sm" >Experience 3: Intern at DEF</div>
+    </div>
+  },
 ];
+
 
 
