@@ -11,10 +11,10 @@ export default function Home() {
   const [selectedTab, setSelectedTab] = useState(allIngredients[0]);
 
   return (
-    <div className="bg-gray-900 min-h-screen md:p-[10vw] text-gray-300 font-mono">
+    <div className="bg-gray-900 min-h-screen md:p-[10vw] text-gray-300 font-mono"  style={{ scrollBehavior: 'smooth' }}>
       <div className="flex">
 
-        <div className="w-[200px] h-[200px] rounded-xl overflow-hidden">
+        <div className="w-[200px] h-[200px] rounded-xl overflow-hidden border-2 border-gray-200">
           <Image
             src="/photoface.png"
             alt="logo"
@@ -111,9 +111,9 @@ export default function Home() {
             </main>
         </div>
 
-        <div className="mt-20 w-[80VW] h-[60vh] rounded-lg bg-black overflow-hidden shadow-lg flex flex-col">
+        <div className="mt-20 w-[80VW] h-[60vh] rounded-lg  overflow-hidden flex flex-col">
             <motion.div 
-              animate={{ x: "400%", y: "400%" }}
+              animate={{ x: ["400%", "-400%", "400%"], y: ["100%", "200%", "300%"], rotate: [360, 360, 360] }}
               transition={{ duration: 2.5, ease: "easeInOut" }}
               className="w-[20%] h-[20%] flex bg-slate-500">
                 <h1 className="text-3xl p-4 w-full h-full flex items-center justify-center">BOX</h1>
