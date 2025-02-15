@@ -69,8 +69,8 @@ export default function Home() {
 
 
 
-      <div className="w-[80VW] h-[60vh] rounded-lg bg-white overflow-hidden shadow-lg flex flex-col">
-            <nav className="bg-gray-100 p-1 border-b border-gray-200 rounded-t-lg">
+      <div className="mt-10 w-[80VW] h-[60vh] rounded-lg bg-gray-700 overflow-hidden shadow-lg flex flex-col">
+            <nav className="bg-gray-800 border-b border-gray-200 rounded-t-lg">
                 <ul className="flex w-full list-none p-0 m-0 font-medium text-sm">
                     {allIngredients.map((item) => (
                         <motion.li
@@ -78,9 +78,9 @@ export default function Home() {
                             initial={false}
                             animate={{
                                 backgroundColor:
-                                    item === selectedTab ? "#eee" : "#eee0",
+                                    item === selectedTab ? "#374151" : "#1f2937",
                             }}
-                            className="flex-1 min-w-0 flex items-center justify-between px-4 py-2 cursor-pointer text-gray-900 relative"
+                            className="flex-1 min-w-0 flex items-center justify-between px-4 py-2 cursor-pointer relative"
                             onClick={() => setSelectedTab(item)}
                         >
                             {`${item.icon} ${item.label}`}
@@ -95,7 +95,7 @@ export default function Home() {
                     ))}
                 </ul>
             </nav>
-            <main className="flex flex-1 justify-center items-center">
+            <main className="flex flex-1 justify-center items-center ">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={selectedTab ? selectedTab.label : "empty"}
